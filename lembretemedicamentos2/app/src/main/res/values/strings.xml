@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">lembrete-medicamentos</string>
+    <string name="channel_name">canal_principal\n</string>
+    <string name="channel_description">descricao_canal</string>
+</resources>
