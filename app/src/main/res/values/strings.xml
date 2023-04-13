@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MedTime</string>
+    <string name="usuario"> Usuário</string>
+    <string name="senha"> Senha</string>
+    <string name="texto_registro">Não possui conta?\nClique aqui para se registrar</string>
+    <string name="login">Conectar-se</string>
+</resources>
