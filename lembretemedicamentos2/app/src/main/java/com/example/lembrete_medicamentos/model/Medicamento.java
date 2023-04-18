@@ -1,15 +1,16 @@
 package com.example.lembrete_medicamentos.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Medicamento {
 
     private Long id;
     private String nome;
     private String dosagem;
-    private LocalDate hora;
+    private LocalDateTime hora;
 
-    public Medicamento(Long id, String nome, String dosagem, LocalDate hora) {
+    public Medicamento(Long id, String nome, String dosagem, LocalDateTime hora) {
         this.id = id;
         this.nome = nome;
         this.dosagem = dosagem;
@@ -36,11 +37,11 @@ public class Medicamento {
         this.dosagem = dosagem;
     }
 
-    public LocalDate getHora() {
+    public LocalDateTime getHora() {
         return hora;
     }
 
-    public void setHora(LocalDate hora) {
+    public void setHora(LocalDateTime hora) {
         this.hora = hora;
     }
 }

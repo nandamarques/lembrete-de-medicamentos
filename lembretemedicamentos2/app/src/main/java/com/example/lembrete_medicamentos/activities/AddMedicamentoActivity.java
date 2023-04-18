@@ -3,9 +3,13 @@ package com.example.lembrete_medicamentos.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.lembrete_medicamentos.R;
 import com.example.lembrete_medicamentos.dao.MedicamentoDAO;
@@ -14,7 +18,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
-public class AddMedicamentoActivity extends AppCompatActivity {
+public class AddMedicamentoActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     private MedicamentoDAO medDao = new MedicamentoDAO();
     private TextInputEditText nomeMedicamento;
@@ -29,7 +33,6 @@ public class AddMedicamentoActivity extends AppCompatActivity {
 
         nomeMedicamento = findViewById(R.id.add_campo_nome);
         doseMedicamento = findViewById(R.id.add_campo_dose);
-        frequenciaMedicamento = findViewById(R.id.add_button_frequencia);
         Button salvar = findViewById(R.id.add_button_salvar);
 
         String nomeMedicamentoValue = nomeMedicamento.getText().toString();
@@ -52,4 +55,28 @@ public class AddMedicamentoActivity extends AppCompatActivity {
 //
 
     }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hora, int minuto) {
+        Toast.makeText(AddMedicamentoActivity.this, hora + ":" + minuto, Toast.LENGTH_SHORT).show();
+        Calendar now = Calendar.getInstance();
+
+        now.set(Calendar.HOUR, hora);
+        now.set(Calendar.MINUTE, minuto);
+
+        TimePickerDialog dialog = new TimePickerDialog(
+                AddMedicamentoActivity.this,
+                this,
+                now.get(Calendar.HOUR),
+                now.get(Calendar.MINUTE),
+                true
+        );
+        dialog.show();
+
+    }
+
+//    @Override
+//    public void onCancel(DialogInterface dialogInterface) {
+//
+//    }
 }
