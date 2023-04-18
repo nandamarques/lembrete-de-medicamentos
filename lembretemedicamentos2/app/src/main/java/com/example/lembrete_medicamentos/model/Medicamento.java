@@ -6,12 +6,13 @@ public class Medicamento {
 
     private Long id;
     private String nome;
-
+    private String dosagem;
     private LocalDate hora;
 
-    public Medicamento(Long id, String nome, LocalDate hora) {
+    public Medicamento(Long id, String nome, String dosagem, LocalDate hora) {
         this.id = id;
         this.nome = nome;
+        this.dosagem = dosagem;
         this.hora = hora;
     }
 
@@ -25,6 +26,14 @@ public class Medicamento {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDosagem() {
+        return dosagem;
+    }
+
+    public void setDosagem(String dosagem) {
+        this.dosagem = dosagem;
     }
 
     public LocalDate getHora() {

@@ -20,10 +20,10 @@ public class MedicamentoDAO {
     }
 
     public void geradorDeRemedios(){
-        adicionarMedicamento(new Medicamento(1l,"Paracetamol", LocalDate.of(2023,04,13)));
-        adicionarMedicamento(new Medicamento(2l,"Ibuprofeno", LocalDate.of(2023,02,24)));
-        adicionarMedicamento(new Medicamento(3l,"Depakote", LocalDate.of(2023,03,9)));
-        adicionarMedicamento(new Medicamento(4l,"Rivotril", LocalDate.of(2023,04,3)));
+//        adicionarMedicamento(new Medicamento(1l,"Paracetamol", "100g",LocalDate.);
+//        adicionarMedicamento(new Medicamento(2l,"Ibuprofeno", LocalDate.of(2023,02,24)));
+//        adicionarMedicamento(new Medicamento(3l,"Depakote", LocalDate.of(2023,03,9)));
+//        adicionarMedicamento(new Medicamento(4l,"Rivotril", LocalDate.of(2023,04,3)));
     }
 
 }
