@@ -1,6 +1,5 @@
 package com.example.lembrete_medicamentos.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Medicamento {
@@ -8,7 +7,14 @@ public class Medicamento {
     private Long id;
     private String nome;
     private String dosagem;
+
+    private Integer frequencia;
+
     private LocalDateTime hora;
+
+    public Medicamento(){
+
+    }
 
     public Medicamento(Long id, String nome, String dosagem, LocalDateTime hora) {
         this.id = id;
@@ -35,6 +41,14 @@ public class Medicamento {
 
     public void setDosagem(String dosagem) {
         this.dosagem = dosagem;
+    }
+
+    public Integer getFrequencia() {
+        return frequencia;
+    }
+
+    public void setFrequencia(Integer frequencia) {
+        this.frequencia = frequencia;
     }
 
     public LocalDateTime getHora() {

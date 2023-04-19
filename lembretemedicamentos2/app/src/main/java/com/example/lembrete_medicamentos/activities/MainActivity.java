@@ -1,9 +1,11 @@
 package com.example.lembrete_medicamentos.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.R;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,11 +15,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.lembrete_medicamentos.R;
+import com.example.lembrete_medicamentos.adapter.Adapter;
+import com.example.lembrete_medicamentos.model.Medicamento;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     private Button salvar;
 
     private static final String CHANNEL_ID = "id";
+
+    public static List<Medicamento> meds = new ArrayList<>();
+    public RecyclerView recyclerView;
+
+    Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +41,28 @@ public class MainActivity extends AppCompatActivity {
         //salvar();
         //createNotificationChannel();
         //notification();
+
+        recyclerView = findViewById(R.id.main_recycleview_lista);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        FloatingActionButton fab = findViewById(R.id.main_fab_add);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AddMedicamentoActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        recyclerView = findViewById(R.id.main_recycleview_lista);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new Adapter(this, meds));
+        super.onResume();
+
     }
 
     /*private void salvar() {
