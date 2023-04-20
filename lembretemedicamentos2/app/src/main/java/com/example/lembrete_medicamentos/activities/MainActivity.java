@@ -1,11 +1,13 @@
 package com.example.lembrete_medicamentos.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -26,7 +28,9 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button salvar;
+    private static final int REQUEST_CODE_EXCLUIR = 1;
+    private static final int REQUEST_CODE_EDIT = 2 ;
+
 
     //private static final String CHANNEL_ID = "id";
 
@@ -61,19 +65,28 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new Adapter(this, MedicamentoDAO.medicamentos));
         super.onResume();
-
     }
 
-    /*private void salvar() {
-        salvar = findViewById(R.id.main_button);
-        salvar.setOnClickListener(view ->{
-            Intent intent = new Intent(MainActivity.this, ListActivity.class);
-            intent.putExtra("Texto_Digitado", "teste");
-            startActivity(intent);
-        });
-    }*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-//    private void notification() {
+        if (requestCode == REQUEST_CODE_EDIT && resultCode == Activity.RESULT_OK) {
+            int position = data.getIntExtra("POSITION", -1);
+            if (position != -1) {
+                // recupere o objeto Medicamento na posição selecionada
+                Medicamento med = meds.get(position);
+                // faça algo com o objeto Medicamento recuperado
+            }
+        }
+    }
+
+
+
+
+
+
+    //    private void notification() {
 //        Intent intent = new Intent(this, MainActivity.class);
 //        PendingIntent p1 = PendingIntent.getActivity(this,345,intent,PendingIntent.FLAG_MUTABLE);
 //        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,CHANNEL_ID)

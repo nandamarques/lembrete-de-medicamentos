@@ -6,27 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"><![CDATA[
     >
 
-        <CheckBox
-            android:id="@+id/item_check_remedio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_fab_editar"
-            android:layout_toRightOf="@+id/item_fab_editar"
-            android:textSize="24sp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/item_fab_editar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+    ]]>
 
-
-
-        <TextView
+    <TextView
             android:id="@+id/item_nome_remedio"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -43,7 +29,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/item_frequencia_remedio"
+            android:id="@+id/item_data_remedio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
