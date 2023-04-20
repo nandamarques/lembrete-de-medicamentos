@@ -10,16 +10,19 @@ public class Medicamento {
 
     private Integer frequencia;
 
+    private LocalDateTime data;
     private LocalDateTime hora;
 
     public Medicamento(){
 
     }
 
-    public Medicamento(Long id, String nome, String dosagem, LocalDateTime hora) {
+    public Medicamento(Long id, String nome, String dosagem, Integer frequencia, LocalDateTime data, LocalDateTime hora) {
         this.id = id;
         this.nome = nome;
         this.dosagem = dosagem;
+        this.frequencia = frequencia;
+        this.data = data;
         this.hora = hora;
     }
 
@@ -57,5 +60,13 @@ public class Medicamento {
 
     public void setHora(LocalDateTime hora) {
         this.hora = hora;
+    }
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
     }
 }

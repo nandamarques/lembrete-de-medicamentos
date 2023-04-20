@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.lembrete_medicamentos.R;
 import com.example.lembrete_medicamentos.dao.MedicamentoDAO;
@@ -18,7 +15,7 @@ import com.example.lembrete_medicamentos.model.Medicamento;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
+import java.time.format.DateTimeFormatter;
 
 public class AddMedicamentoActivity extends AppCompatActivity {
 
@@ -30,13 +27,13 @@ public class AddMedicamentoActivity extends AppCompatActivity {
     private Button horarioMedicamento;
 
     private Button dataMedicamento;
-
     private TimePickerDialog mTimePickerDialog;
-
     private DatePickerDialog mDatePickerDialog;
 
     private TextView hora;
     private TextView data;
+    private Button salvar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,23 +42,14 @@ public class AddMedicamentoActivity extends AppCompatActivity {
 
         nomeMedicamento = findViewById(R.id.add_campo_nome);
         doseMedicamento = findViewById(R.id.add_campo_dose);
-        Button salvar = findViewById(R.id.add_button_salvar);
-
-        salvar.setOnClickListener(v -> {
-            Medicamento meds = new Medicamento();
-            meds.setNome(nomeMedicamento.getText().toString());
-            meds.setDosagem(doseMedicamento.getText().toString());
-            //resolver conversões abaixo
-//            meds.getFrequencia(frequenciaMedicamento.getText().toString()));
-//            meds.getHora(horarioMedicamento.getText().toString());
-                MainActivity.meds.add(meds);
-                finish();
-        });
-
+        salvar = findViewById(R.id.add_button_salvar);
         horarioMedicamento = findViewById(R.id.add_button_horario);
         dataMedicamento =  findViewById(R.id.add_button_data);
-        hora = findViewById(R.id.add_text_horario);
+        hora = findViewById(R.id.add_text_hora);
         data = findViewById(R.id.add_text_data);
+
+
+
         mTimePickerDialog = new TimePickerDialog(this, (timePicker, hourOfDay, minute) ->
                 hora.setText(String.format("%02d:%02d", hourOfDay, minute)),
                 12, 0, true);
@@ -73,50 +61,20 @@ public class AddMedicamentoActivity extends AppCompatActivity {
         horarioMedicamento.setOnClickListener(view -> mTimePickerDialog.show());
         dataMedicamento.setOnClickListener(view -> mDatePickerDialog.show());
 
+        DateTimeFormatter formatadorData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatadorHora = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-//        horarioMedicamento.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                addHorario(view);
-//
-//            }
-//        });
+
+        salvar.setOnClickListener(v -> {
+            Medicamento med = new Medicamento();
+            med.setNome(nomeMedicamento.getText().toString());
+            med.setDosagem(doseMedicamento.getText().toString());
+            med.setFrequencia(Integer.parseInt(frequenciaMedicamento.getText().toString()));
+            med.setData(LocalDateTime.parse((CharSequence) data, formatadorData));
+            med.setHora(LocalDateTime.parse((CharSequence) hora, formatadorHora));
+            MainActivity.meds.add(med);
+            finish();
+        });
     }
-//
-//    private int hora, minuto;
-//    TimePicker timePicker;
-//
-//    private void addHorario(View view) {
-//        initTimeData();
-//        onTimeSet(timePicker, hora, minuto);
-//        Toast.makeText(AddMedicamentoActivity.this, hora + ":" + minuto, Toast.LENGTH_SHORT).show();
-//    }
-//
-//
-//    private void initTimeData() {
-//        Calendar c = Calendar.getInstance();
-//        hora = c.get(Calendar.HOUR);
-//        minuto = c.get(Calendar.MINUTE);
-//    }
-//
-//    @Override
-//    public void onTimeSet(TimePicker timePicker, int i, int i1) {
-//
-//        Calendar now = Calendar.getInstance();
-//        now.set(hora, minuto);
-//
-//
-//        TimePickerDialog dialog = new TimePickerDialog(
-//                AddMedicamentoActivity.this,
-//                this,
-//                now.get(Calendar.HOUR),
-//                now.get(Calendar.MINUTE),
-//                true
-//        );
-//        dialog.setTitle("Horário da medicação");
-//        dialog.show();
-//    }
-//
-
 }
 

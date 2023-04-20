@@ -37,8 +37,9 @@ public class Adapter extends RecyclerView.Adapter<MyViewHolder> {
         Medicamento med = this.lista.get(position);
         holder.getNome().setText(med.getNome());
         holder.getDose().setText(med.getDosagem());
-        holder.getFrequencia().setText(med.getFrequencia());
-       // holder.getHorario().setText(med.getHora());
+        holder.getFrequencia().setText(med.getFrequencia().toString());
+        //holder.getHora().setText(med.getHora().toString());
+        //holder.getData().setText(med.getData().toString());
     }
 
     @Override
@@ -53,13 +54,17 @@ class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListen
     private TextView nome;
     private TextView dose;
     private TextView frequencia;
-    private TextView horario;
+
+    private TextView data;
+    private TextView hora;
+
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
         nome = itemView.findViewById(R.id.item_nome_remedio);
         dose = itemView.findViewById(R.id.item_dose_remedio);
         frequencia = itemView.findViewById(R.id.item_frequencia_remedio);
-        horario = itemView.findViewById(R.id.item_horarios_remedio);
+        hora = itemView.findViewById(R.id.add_text_hora);
+        data = itemView.findViewById(R.id.add_text_data);
         itemView.setOnClickListener(this);
     }
 
@@ -75,8 +80,12 @@ class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListen
         return frequencia;
     }
 
-    public TextView getHorario() {
-        return horario;
+    public TextView getHora() {
+        return hora;
+    }
+
+    public TextView getData() {
+        return data;
     }
 
 
